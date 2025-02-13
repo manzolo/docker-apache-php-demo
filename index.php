@@ -52,10 +52,9 @@
     <div class="container">
         <h1>Informazioni del server</h1>
         <div class="info-section">
-            <p><label>Versione di Apache:</label><span class="variable"> <?php echo apache_get_version(); ?></span></p>
             <p><label>Versione di PHP:</label><span class="variable"> <?php echo phpversion(); ?></span></p>
             <p><label>Nome host:</label><span class="variable"> <?php echo gethostname(); ?></span></p>
-            <p><label>Indirizzo IP del server:</label><span class="variable"> <?php echo $_SERVER['SERVER_ADDR']; ?></span></p>
+            <p><label>Indirizzo IP del server:</label><span class="variable"> <?php $host = gethostname(); echo gethostbyname($host); ?></span></p>
             <p><label>Data e ora del server:</label><span class="variable"> <?php echo date('Y-m-d H:i:s'); ?></span></p>
             <p><label>Sistema operativo:</label><span class="variable"> <?php echo php_uname(); ?></span></p>
             <p><label>Memoria disponibile:</label><span class="variable"> <?php echo ini_get('memory_limit'); ?></span></p>
