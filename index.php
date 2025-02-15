@@ -46,6 +46,29 @@
             background-color: #f0f0f0;
             border-radius: 5px;
         }
+        .input-section {
+            margin-bottom: 20px;
+        }
+        .input-section input {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-section button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-section button:hover {
+            background-color: #0056b3;
+        }
+        .response-section {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -68,8 +91,35 @@
             <p><label>Informazioni server:</label></p>
             <pre><?php print_r($_SERVER); ?></pre>
         </div>
-        <!-- Aggiungi altre informazioni a piacere -->
+
+        <!-- Sezione per l'input dell'host e la chiamata API -->
+        <div class="input-section">
+            <label for="hostInput">Inserisci l'host da chiamare:</label>
+            <input type="text" id="hostInput" placeholder="Esempio: http://example.com">
+            <button onclick="callEndpoint()">Chiama Endpoint</button>
+        </div>
+
+        <!-- Sezione per visualizzare la risposta JSON -->
+        <div class="response-section">
+            <p><label>Risposta JSON:</label></p>
+            <pre id="jsonResponse"></pre>
+        </div>
     </div>
+
+    <script>
+        function callEndpoint() {
+            const host = document.getElementById('hostInput').value;
+            const url = `${host}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('jsonResponse').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById('jsonResponse').textContent = `Errore: ${error.message}`;
+                });
+        }
+    </script>
 </body>
 </html>
-
